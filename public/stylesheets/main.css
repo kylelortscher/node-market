@@ -71,10 +71,10 @@ footer .footer-nav {
 
 .rating {
     font-size: 12px;
-    float: right;
     margin-bottom: 1%;
+    text-align: center;
 }
 
 .bottom-card-content {
-    margin-bottom: 15%;
+    margin-bottom: 5%;
 }
