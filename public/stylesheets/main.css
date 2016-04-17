@@ -16,3 +16,11 @@ img{
     width:100%;
     height:auto;
 }
+
+.bg-inverse {
+    background-color: #222;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
