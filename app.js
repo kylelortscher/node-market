@@ -15,6 +15,7 @@ var methodOverride = require('method-override');
 
 //Route For Homepage
 var homeRoutes = require("./routes/home");
+var serviceRoutes = require("./routes/service");
 
 
 //Used For Flash Messages
@@ -85,6 +86,7 @@ app.use(methodOverride('_method'));
 
 //SETTING UP ROUTES IN OTHER FILES
 app.use(homeRoutes);
+app.use(serviceRoutes);
 
 
 //Start Server Needed For Deployment
