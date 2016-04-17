@@ -61,3 +61,20 @@ footer .footer-nav {
 .fa {
     color: #9b9b9b;
 }
+
+.price {
+    font-size: 12px;
+    float: left;
+    margin-bottom: 1%;
+    color: #26b845;
+}
+
+.rating {
+    font-size: 12px;
+    float: right;
+    margin-bottom: 1%;
+}
+
+.bottom-card-content {
+    margin-bottom: 15%;
+}
