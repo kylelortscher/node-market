@@ -1,0 +1,14 @@
+body {
+    background: #f3f5f5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.jumbotron-cta {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 35px;
+    color: #272832;
+    font-weight: bold;
+    line-height: 15px;
+
+}
