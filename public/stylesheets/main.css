@@ -24,3 +24,40 @@ img{
 .navbar-nav .nav-link {
     color: #fff;
 }
+
+footer {
+    background: white;
+    height: 185px;
+    padding-top: 45px;
+}
+
+footer .divider {
+    border-top: 1px solid #ebebeb;
+    margin: 20px 0px;
+    margin-top: 50px;
+}
+
+footer .bottom-nav a {
+    color: #9b9b9b;
+    margin-right: 30px;
+}
+
+footer .social a {
+    float: right;
+    margin-left: 35px;
+}
+
+footer .footer-nav a {
+    color: #9b9b9b;
+    margin-right: 30px;
+    font-weight: 600;
+    float: left;
+}
+
+footer .footer-nav {
+    margin-left: 185px;
+}
+
+.fa {
+    color: #9b9b9b;
+}
