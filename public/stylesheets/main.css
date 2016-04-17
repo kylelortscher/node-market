@@ -115,3 +115,8 @@ footer .footer-nav {
 .fa-star-half {
     color:#f1c40f;
 }
+
+.top-star {
+    margin-top: 4px;
+    vertical-align: top;
+}
