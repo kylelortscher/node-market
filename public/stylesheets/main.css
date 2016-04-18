@@ -120,3 +120,12 @@ footer .footer-nav {
     margin-top: 4px;
     vertical-align: top;
 }
+
+.center {
+    text-align: center;
+}
+
+.user-description {
+    margin: 25px;
+    line-height: 30px;
+}

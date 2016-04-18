@@ -2,10 +2,14 @@
 var express = require('express');
 var router = express.Router();
 //======================================
-//Homepage Get
+//Show Service Get
 //======================================
 router.get('/show', function(req, res) {
     res.render('service/show');
+});
+
+router.get('/user', function(req, res) {
+   res.render('users/show');
 });
 
 
