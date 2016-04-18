@@ -12,5 +12,9 @@ router.get('/user', function(req, res) {
    res.render('users/show');
 });
 
+router.get('/service/new', function(req, res){
+   res.render('service/new');
+});
+
 
 module.exports = router;

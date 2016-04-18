@@ -2,6 +2,7 @@ body {
     background: #f3f5f5;
     font-family: 'Lato', sans-serif;
     margin-top: 55px;
+    overflow-x: hidden;
 }
 
 .jumbotron-cta {
@@ -140,4 +141,11 @@ footer .footer-nav {
 
 .modal-body {
     padding: 25px;
+}
+
+.form-service-label {
+    float: right;
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: 5%;
 }

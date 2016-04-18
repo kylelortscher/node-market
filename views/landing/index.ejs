@@ -1,22 +1,24 @@
 <% include ../partials/header %>
-<div class="jumbotron">
-    <h1 class="display-3 jumbotron-cta" style="text-align: center;">Start Buying And Selling eCommerce Services</h1>
-    <p style="text-align: center;">Sign Up And Receive 100% Of Your Own Sales</p>
-    <div class="container" style="text-align: center;">
-        <form action="/singup" class="form-inline" method="post">
-            <div class="form-group">
-                <input type="text" autofocus="autofocus" class="form-control left-field" placeholder="email" name="email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="username" name="username">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="password" name="password">
-            </div>
-            <input class="btn btn-success btn-jumbotron" name="commit" type="submit" value="Create Account">
-        </form>
+<% if(currentUser == null) { %>
+    <div class="jumbotron">
+        <h1 class="display-3 jumbotron-cta" style="text-align: center;">Start Buying And Selling eCommerce Services</h1>
+        <p style="text-align: center;">Sign Up And Receive 100% Of Your Own Sales</p>
+        <div class="container" style="text-align: center;">
+            <form action="/singup" class="form-inline" method="post">
+                <div class="form-group">
+                    <input type="text" autofocus="autofocus" class="form-control left-field" placeholder="email" name="email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="username" name="username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="password" name="password">
+                </div>
+                <input class="btn btn-success btn-jumbotron" name="commit" type="submit" value="Create Account">
+            </form>
+        </div>
     </div>
-</div>
+<% } %>
 <h2 style="text-align: center;font-weight: bold;">Featured Gigs</h2>
 <div class="container">
     <div class="col-xs-6 col-xs-offset-3">

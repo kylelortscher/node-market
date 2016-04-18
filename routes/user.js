@@ -73,7 +73,7 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
                //SETTING UP THE SESSION
                req.auth.user = user.email;
                req.flash("info", "Thanks for signin up!");
-               res.redirect('/');
+               res.redirect('/welcome');
            }
         });
     }
