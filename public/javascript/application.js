@@ -8,5 +8,3 @@ $(document).ready(function() {
         $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
     }
 });
-
-
