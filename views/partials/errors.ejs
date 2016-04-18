@@ -1,0 +1,28 @@
+<% if(error && error.length > 0){ %>
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        <div class="error-message" style="text-align: center;"><%=error%></div>
+    </div>
+</div>
+<% } %>
+<% if(success && success.length > 0){ %>
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <div class="success-message" style="text-align: center;"><%=success%></div>
+    </div>
+</div>
+<% } %>
+<% if(info && info.length > 0){ %>
+<div class="container">
+    <div class="alert alert-info" role="alert">
+        <div class="info-message" style="text-align: center;"><%=info%></div>
+    </div>
+</div>
+<% } %>
+<% if(warning && warning.length > 0){ %>
+<div class="container">
+    <div class="alert alert-warning" role="alert">
+        <div class="warning-message" style="text-align: center;"><%=warning%></div>
+    </div>
+</div>
+<% } %>
