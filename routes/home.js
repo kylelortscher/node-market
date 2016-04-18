@@ -5,7 +5,7 @@ var router = express.Router();
 //Homepage Get
 //======================================
 router.get('/', function(req, res) {
-    res.render('landing/index');
+    res.render("landing/index");
 });
 
 //======================================

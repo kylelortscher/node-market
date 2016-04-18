@@ -54,6 +54,7 @@ app.use(function(req, res, next){
 		User.findOne({ email: req.auth.user }, function(err, user) {
 			//If A User Was Found, Make The User Available
 			if (user) {
+				currentUser = user;
 				req.user = user;
 				req.auth.user = user.email; //Update The Session Info
 				res.locals.user = user; //

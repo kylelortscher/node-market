@@ -108,6 +108,7 @@ router.post('/login', middleware.alreadyLoggedIn, function(req, res){
 //======================================
 router.get('/json', function(req, res){
     res.json(req.user);
+    console.log(req.user);
 });
 
 //======================================
