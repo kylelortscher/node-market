@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
+var middleware = require("../middleware/index.js");
 var User = require("../models/user");
 
 //======================================
@@ -14,21 +15,21 @@ router.get('/profile', function(req,res){
 //======================================
 //Login Get
 //======================================
-router.get('/login', function(req, res){
+router.get('/login', middleware.alreadyLoggedIn, function(req, res){
    res.render('users/login');
 });
 
 //======================================
 //Signup Get
 //======================================
-router.get('/signup', function(req, res){
+router.get('/signup', middleware.alreadyLoggedIn, function(req, res){
     res.render('users/signup');
 });
 
 //======================================
 //Signup Post
 //======================================
-router.post('/signup', function(req, res) {
+router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
 
     var password = req.body.password;
     var salt = bcrypt.genSaltSync(10);
@@ -82,7 +83,7 @@ router.post('/signup', function(req, res) {
 //======================================
 //Login Post
 //======================================
-router.post('/login', function(req, res){
+router.post('/login', middleware.alreadyLoggedIn, function(req, res){
     User.findOne({email: req.body.email}, function(err, user) {
        if(!user) {
            req.flash("error", "No Username/Email Found");
@@ -112,7 +113,7 @@ router.get('/json', function(req, res){
 //======================================
 //Logout
 //======================================
-router.get('/logout', function(req, res) {
+router.get('/logout',middleware.requireLoginFlash, function(req, res) {
     if (req.auth) {
         req.auth.reset();
     }
