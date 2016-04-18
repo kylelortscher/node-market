@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="card card-block">
+            <h2 style="font-weight: 700;text-align: center;">Avatar</h2>
+            <hr>
+            <img src="https://pixabay.com/static/uploads/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="user" class="img-thumbnail" style="height:125px; width:auto;margin-left: 42%;"><br>
+            <button class="btn btn-success" style="margin-left: 41%;margin-top: 4%;">Update Avatar</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="card card-block">
+            <h2 style="font-weight: 700;text-align: center;">Add Profile Info</h2>
+            <hr>
+            <form action="/profileInfo" method="post">
+                <div class="form-group">
+                    <textarea name="textarea" rows="10" cols="50" class="form-control">Write something here</textarea>
+                </div>
+                <button type="submit" class="btn btn-warning btn-block">Add Info</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
