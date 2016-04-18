@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aec31852-ae60-4688-b90b-6f099eeecf8d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/users/show.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/home.js" afterPath="$PROJECT_DIR$/routes/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/service.js" afterPath="$PROJECT_DIR$/routes/service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/landing/index.ejs" afterPath="$PROJECT_DIR$/views/landing/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/users/show.ejs" afterPath="$PROJECT_DIR$/views/users/show.ejs" />
     </list>
     <ignored path="node-market.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.708334">
-              <caret line="130" column="1" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
+            <state vertical-scroll-proportion="-8.980392">
+              <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,16 +78,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/landing/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.958334">
-              <caret line="83" column="10" selection-start-line="26" selection-start-column="4" selection-end-line="83" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.18897638">
+              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
               <folding>
-                <element signature="e#1561#1591#0#HTML" expanded="true" />
-                <element signature="e#2425#2455#0#HTML" expanded="true" />
-                <element signature="e#3289#3319#0#HTML" expanded="true" />
-                <element signature="e#4153#4183#0#HTML" expanded="true" />
+                <element signature="e#1680#1710#0#HTML" expanded="true" />
+                <element signature="e#2911#2941#0#HTML" expanded="true" />
+                <element signature="e#4142#4172#0#HTML" expanded="true" />
+                <element signature="e#5373#5403#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,8 +116,8 @@
       <file leaf-file-name="show.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/service/show.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.25">
-              <caret line="36" column="49" selection-start-line="31" selection-start-column="20" selection-end-line="36" selection-end-column="49" />
+            <state vertical-scroll-proportion="-14.375">
+              <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
               <folding>
                 <element signature="e#191#235#0#HTML" expanded="true" />
                 <element signature="e#528#572#0#HTML" expanded="true" />
@@ -136,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/users/show.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9527559">
-              <caret line="81" column="10" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
+            <state vertical-scroll-proportion="-19.583334">
+              <caret line="78" column="72" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
               <folding>
                 <element signature="e#213#266#0#HTML" expanded="true" />
                 <element signature="e#477#522#0#HTML" expanded="true" />
@@ -165,7 +164,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/public/javascript/application.js" />
-        <option value="$PROJECT_DIR$/views/landing/index.ejs" />
         <option value="$PROJECT_DIR$/views/partials/header.ejs" />
         <option value="$PROJECT_DIR$/views/partials/nav.ejs" />
         <option value="$PROJECT_DIR$/views/partials/footer.ejs" />
@@ -173,9 +171,10 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/service/show.ejs" />
         <option value="$PROJECT_DIR$/routes/service.js" />
-        <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
         <option value="$PROJECT_DIR$/routes/home.js" />
         <option value="$PROJECT_DIR$/views/users/show.ejs" />
+        <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
+        <option value="$PROJECT_DIR$/views/landing/index.ejs" />
       </list>
     </option>
   </component>
@@ -527,38 +526,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/service/show.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25">
-          <caret line="36" column="49" selection-start-line="31" selection-start-column="20" selection-end-line="36" selection-end-column="49" />
-          <folding>
-            <element signature="e#191#235#0#HTML" expanded="true" />
-            <element signature="e#528#572#0#HTML" expanded="true" />
-            <element signature="e#648#695#0#HTML" expanded="true" />
-            <element signature="e#2652#2698#0#HTML" expanded="true" />
-            <element signature="e#2957#2989#0#HTML" expanded="true" />
-            <element signature="e#3051#3098#0#HTML" expanded="true" />
-            <element signature="e#4480#4504#0#HTML" expanded="true" />
-            <element signature="e#4967#4994#0#HTML" expanded="true" />
-            <element signature="e#5070#5114#0#HTML" expanded="true" />
-            <element signature="e#6136#6218#0#HTML" expanded="true" />
-            <element signature="e#6331#6378#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.708334">
-          <caret line="130" column="1" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -579,23 +550,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/landing/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.958334">
-          <caret line="83" column="10" selection-start-line="26" selection-start-column="4" selection-end-line="83" selection-end-column="10" />
-          <folding>
-            <element signature="e#1561#1591#0#HTML" expanded="true" />
-            <element signature="e#2425#2455#0#HTML" expanded="true" />
-            <element signature="e#3289#3319#0#HTML" expanded="true" />
-            <element signature="e#4153#4183#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/users/show.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9527559">
-          <caret line="81" column="10" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
+        <state vertical-scroll-proportion="-19.583334">
+          <caret line="78" column="72" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
           <folding>
             <element signature="e#213#266#0#HTML" expanded="true" />
             <element signature="e#477#522#0#HTML" expanded="true" />
@@ -606,6 +564,47 @@
             <element signature="e#3079#3109#0#HTML" expanded="true" />
             <element signature="e#3943#3973#0#HTML" expanded="true" />
             <element signature="e#4807#4837#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.980392">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/service/show.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375">
+          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+          <folding>
+            <element signature="e#191#235#0#HTML" expanded="true" />
+            <element signature="e#528#572#0#HTML" expanded="true" />
+            <element signature="e#648#695#0#HTML" expanded="true" />
+            <element signature="e#2652#2698#0#HTML" expanded="true" />
+            <element signature="e#2957#2989#0#HTML" expanded="true" />
+            <element signature="e#3051#3098#0#HTML" expanded="true" />
+            <element signature="e#4480#4504#0#HTML" expanded="true" />
+            <element signature="e#4967#4994#0#HTML" expanded="true" />
+            <element signature="e#5070#5114#0#HTML" expanded="true" />
+            <element signature="e#6136#6218#0#HTML" expanded="true" />
+            <element signature="e#6331#6378#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/landing/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18897638">
+          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+          <folding>
+            <element signature="e#1680#1710#0#HTML" expanded="true" />
+            <element signature="e#2911#2941#0#HTML" expanded="true" />
+            <element signature="e#4142#4172#0#HTML" expanded="true" />
+            <element signature="e#5373#5403#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

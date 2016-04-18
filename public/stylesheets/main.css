@@ -72,8 +72,6 @@ footer .footer-nav {
 
 .rating {
     font-size: 12px;
-    margin-bottom: 1%;
-    text-align: center;
 }
 
 .bottom-card-content {
@@ -128,4 +126,8 @@ footer .footer-nav {
 .user-description {
     margin: 25px;
     line-height: 30px;
+}
+
+.bottom-card-content {
+    margin-bottom: 0px;
 }
