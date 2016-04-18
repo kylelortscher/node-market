@@ -19,6 +19,9 @@ var serviceRoutes = require("./routes/service");
 var userRoutes = require("./routes/user");
 
 
+//Models
+var User = require("./models/user");
+
 //Used For Flash Messages
 app.use(cookieParser('secret'));
 app.use(expressSession({cookie: { maxAge: 60000 }}));
@@ -45,27 +48,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 
-////SETTING UP CLIENT-SESSIONS TO WORK WITH AUTHENTICATION
-//app.use(function(req, res, next){
-//	if (req.auth && req.auth.user) {
-//		User.findOne({ email: req.auth.user }, function(err, user) {
-//			//If A User Was Found, Make The User Available
-//			if (user) {
-//				req.user = user;
-//				req.auth.user = user.email; //Update The Session Info
-//				res.locals.user = user; //
-//			}
-//		});
-//		Account.findOne({email: req.auth.user}, function(err, account) {
-//			if(account) {
-//				req.account = account;
-//			}
-//			next();
-//		});
-//	} else {
-//		next(); //If No Session Is Available
-//	}
-//});
+//SETTING UP CLIENT-SESSIONS TO WORK WITH AUTHENTICATION
+app.use(function(req, res, next){
+	if (req.auth && req.auth.user) {
+		User.findOne({ email: req.auth.user }, function(err, user) {
+			//If A User Was Found, Make The User Available
+			if (user) {
+				req.user = user;
+				req.auth.user = user.email; //Update The Session Info
+				res.locals.user = user; //
+			}
+			next();
+		});
+	} else {
+		next(); //If No Session Is Available
+	}
+});
 
 
 //FUNCTION TO CHECK EVERY SINGLE PAGE TO GET THE CURRENT USERS INFO

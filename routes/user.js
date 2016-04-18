@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
+var User = require("../models/user");
+
 //======================================
 //Profile Get
 //======================================
@@ -29,12 +31,6 @@ router.get('/signup', function(req, res){
 router.post('/signup', function(req, res) {
 
     var password = req.body.password;
-    //TODO SETUP PASSWORD Check
-    if (password.length < 8) {
-        req.flash("error", "Password Must Be Longer Then 8 Characters");
-
-    }
-
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password, salt);
     var username = req.body.username;
@@ -56,9 +52,29 @@ router.post('/signup', function(req, res) {
 
     if(!validateEmail(email)) {
         req.flash("error", "Not a valid Email Address!");
-        res.redirect("/")
+        res.redirect("/signup");
     } else if (!validateUsername(username)) {
-
+        req.flash("error", "Not a Valid Username Please Only Use Letters, and Numbers");
+        res.redirect("/signup");
+    } else if (password.length < 8) {
+        req.flash("error", "Password Must Be Longer Then 8 Characters");
+        res.redirect("/signup");
+    } else {
+        var newUser = {username: username, email: email, password: hash};
+        User.create(newUser, function(err, user){
+           if(err) {
+               console.log(err);
+               if(err.code === 11000) {
+                   req.flash("error", "Email/Username Is Already Taken");
+                   res.redirect('/signup');
+               }
+           } else {
+               //SETTING UP THE SESSION
+               req.auth.user = user.email;
+               req.flash("info", "Thanks for signin up!");
+               res.redirect('/');
+           }
+        });
     }
 
 });
@@ -66,5 +82,44 @@ router.post('/signup', function(req, res) {
 //======================================
 //Login Post
 //======================================
+router.post('/login', function(req, res){
+    User.findOne({email: req.body.email}, function(err, user) {
+       if(!user) {
+           req.flash("error", "No Username/Email Found");
+           res.redirect('/login');
+       } else {
+           if (bcrypt.compareSync(req.body.password, user.password)) {
+               //Everything Matches
+               req.auth.user = user.email;
+               req.flash("info", "Successfully Logged In!");
+               res.redirect('/');
+           } else {
+               //
+               req.flash("error", "Wrong Credentials Pleas Try Again");
+               res.redirect('/login');
+           }
+       }
+    });
+});
+
+//======================================
+//Using For Testing Sessions
+//======================================
+router.get('/json', function(req, res){
+    res.json(req.user);
+});
+
+//======================================
+//Logout
+//======================================
+router.get('/logout', function(req, res) {
+    if (req.auth) {
+        req.auth.reset();
+    }
+    req.flash("info", "Successfully logged out!");
+    res.redirect('/login');
+});
+
+
 
 module.exports = router;
