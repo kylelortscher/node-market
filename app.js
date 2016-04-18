@@ -33,7 +33,7 @@ app.use(session({
 }));
 
 //Mongoose Connected To Mongolab
-mongoose.connect("mongodb://localhost/sellgrip");
+mongoose.connect("mongodb://localhost/market");
 
 //Boilerplate code needed for setup of npm package
 app.use(morgan('dev'));
