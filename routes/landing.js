@@ -19,19 +19,7 @@ router.get('/', function(req, res) {
 //Welcome Get
 //======================================
 router.get('/welcome', function(req, res){
-   res.render('landing/welcome');
-});
-//======================================
-//Messages Get
-//======================================
-router.get('/messages', function(req, res){
-   res.render('messages/index');
-});
-//======================================
-//Purchases Get
-//======================================
-router.get('/purchases', function(req, res){
-    res.render('purchases/index');
+    res.render('landing/welcome');
 });
 
 

@@ -102,13 +102,26 @@ router.post('/login', middleware.alreadyLoggedIn, function(req, res){
        }
     });
 });
-
 //======================================
-//Using For Testing Sessions
+//Show Specific Users Profile
 //======================================
-router.get('/json', function(req, res){
-    res.json(req.user);
-    console.log(req.user);
+router.get('/user/:username', function(req, res){
+    //Finding The User Based On The Username Param Passed
+    User.findOne({username: req.params.username}, function(err, user){
+        if(err) {
+            console.log(err);
+        } else {
+            //Once User If Found Take The User's Email, and Search For All Services Made By The User
+            Service.find({email: user.email}, function(err, services){
+                if(err) {
+                    console.log(err);
+                } else {
+                    //Display The User, and All Of The Services Associated With That User
+                    res.render('users/show', {user:user, services:services});
+                }
+            });
+        }
+    });
 });
 
 //======================================
