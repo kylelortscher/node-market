@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 
 //Route For Homepage
+var favoriteRoutes  = require("./routes/favorite");
 var landingRoutes  = require("./routes/landing");
 var messageRoutes  = require("./routes/message");
 var purchaseRoutes = require("./routes/purchase");
@@ -88,6 +89,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 
 //SETTING UP ROUTES IN OTHER FILES
+app.use(favoriteRoutes);
 app.use(landingRoutes);
 app.use(messageRoutes);
 app.use(purchaseRoutes);

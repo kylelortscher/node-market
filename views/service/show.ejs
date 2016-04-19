@@ -60,7 +60,9 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="button" class="btn btn-primary-outline btn-block" style="text-align: center;">Add To Favorites</button>
+                        <form action="/favorite/<%= service.id %>" method="post">
+                            <button class="btn btn-primary-outline btn-block" type="submit" style="text-align: center;">Add To Favorites</button>
+                        </form>
                         <div class="user-rating" style="margin-top: 10%; margin-bottom: 10%;">
                             <i class="fa fa-star 2x" aria-hidden="true"></i>
                             <i class="fa fa-star 2x" aria-hidden="true"></i>
