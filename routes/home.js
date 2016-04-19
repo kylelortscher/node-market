@@ -26,6 +26,11 @@ router.get('/messages', function(req, res){
 router.get('/purchases', function(req, res){
     res.render('purchases/index');
 });
-
+//======================================
+//Show Current Users Profile
+//======================================
+router.get('/user/me', function(req, res){
+   res.render('users/show');
+});
 
 module.exports = router;
