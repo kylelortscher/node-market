@@ -11,5 +11,9 @@ router.get('/messages', function(req, res){
 });
 
 
+router.get('/message/:username', function(req, res){
+   res.render('messages/new');
+});
+
 
 module.exports = router;
