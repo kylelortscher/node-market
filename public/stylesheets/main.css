@@ -159,3 +159,9 @@ footer .footer-nav {
     width: 24px;
     border-radius: 50%;
 }
+
+.order-image-preview {
+    height: 32px;
+    width: 45px;
+    border-radius: 2%;
+}
