@@ -2,13 +2,20 @@
 var express = require('express');
 var router = express.Router();
 var Service = require("../models/service");
+var User = require("../models/user");
 
 
 //======================================
 //Show Service Get
 //======================================
-router.get('/show', function(req, res) {
-    res.render('service/show');
+router.get('/service/:id', function(req, res) {
+    Service.findOne({id: req.params.id}, function(err, service){
+       if(err) {
+           console.log(err);
+       } else {
+           res.render('service/show', {service:service});
+       }
+    });
 });
 
 
@@ -29,8 +36,21 @@ router.get('/service/new', function(req, res){
 //======================================
 //Manage Current Services
 //======================================
+//TODO FIX GET USERNAME OF USER CLICKED
 router.get('/services/manage', function(req, res){
-    res.render('service/manage');
+    User.findOne({email: req.user.email}, function(err, user){
+       if(err) {
+           console.log(err);
+       } else {
+           Service.find({email: req.user.email}, function(err, services){
+              if(err) {
+                  console.log(err);
+              } else {
+                  res.render("service/manage", {services:services});
+              }
+           });
+       }
+    });
 });
 
 //======================================
