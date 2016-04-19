@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 
 var serviceSchema = mongoose.Schema({
     email: String,
-    title: String,
+    title: { type: String, unique: true },
+    titleSeo: { type: String, unique: true },
     price: Number,
     dueDate: Number,
     youtubeUrl: String,

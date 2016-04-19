@@ -1,21 +1,27 @@
 //Express Configuration
 var express = require('express');
 var router = express.Router();
-var Service = require("../models/service");
-var User = require("../models/user");
+var Service = require("../models/service.js");
+var middleware = require("../middleware/index.js");
+var User = require("../models/user.js");
 
-
-//======================================
-//Show Service Get
-//======================================
-router.get('/service/:id', function(req, res) {
-    Service.findOne({id: req.params.id}, function(err, service){
-       if(err) {
-           console.log(err);
-       } else {
-           res.render('service/show', {service:service});
-       }
-    });
+//==================================
+//Service Show One Page
+//==================================
+router.get('/service/:titleSeo', function(req, res){
+   Service.findOne({'titleSeo': req.params.titleSeo}, function(err, service){
+      if(err) {
+          console.log(err);
+      } else {
+          User.findOne({email: service.email}, function(err, user){
+             if(err) {
+                 console.log(err);
+             } else {
+                 res.render('service/show', {service:service, user:user});
+             }
+          });
+      }
+   });
 });
 
 //======================================
@@ -68,7 +74,7 @@ router.get('/services/manage', function(req, res){
 //======================================
 //Service Post
 //======================================
-router.post('/newservice', function(req, res){
+router.post('/newservice', middleware.requireLoginFlash, function(req, res){
     var title       = req.body.title;
     var price       = req.body.price;
     var image       = "https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg";
@@ -78,6 +84,7 @@ router.post('/newservice', function(req, res){
     var dueDate     = req.body.dueDate;
     var refund      = req.body.refund;
     var email       = req.user.email;
+    var titleSeo    = title.split(' ').join('-');
 
     //Check If Title Is There
     if(title == '') {
@@ -118,7 +125,7 @@ router.post('/newservice', function(req, res){
     }
 
     //Check If Title Length
-    if(title.length > 45){
+    if(title.length > 55){
         req.flash("error", "Your title is only allowed to be 45 characters");
         res.redirect("/service/new");
         next();
@@ -129,13 +136,17 @@ router.post('/newservice', function(req, res){
         var reg = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
         return reg.test(youtubeUrl);
     }
-    if(!checkYoutubeUrl(youtubeUrl)) {
-        req.flash("error", "Youtube link is not valid");
-        res.redirect("/service/new");
-        next();
+
+    //Youtube Can Be Left Blank, But If They Do Enter Something We Validate It
+    if (youtubeUrl != '') {
+        if(!checkYoutubeUrl(youtubeUrl)) {
+            req.flash("error", "Youtube link is not valid");
+            res.redirect("/service/new");
+            next();
+        }
     }
 
-    var newService = {title: title, price: price, image: image,youtubeUrl: youtubeUrl, category: category, description: description, dueDate: dueDate, refund: refund, email: email};
+    var newService = {title: title, price: price, image: image,youtubeUrl: youtubeUrl, category: category, description: description, dueDate: dueDate, refund: refund, email: email, titleSeo: titleSeo};
     Service.create(newService, function(err, user){
         if(err) {
             console.log(err);

@@ -3,29 +3,12 @@
     <div class="container">
         <div class="col-md-8">
             <div class="card card-block">
-                <h2 class="card-title" style="text-align: center;font-weight: 700;">I Will Product Professional Product Photography Photos</h2>
+                <h2 class="card-title" style="text-align: center;font-weight: 700;"><%= service.title %></h2>
                 <img class="card-img-top" src="https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg" alt="Card image cap">
             </div>
             <div class="card">
                 <div class="card-header" style="text-align: center;font-weight: 700;">About This Gig</div>
-                <p class="card-text margin-card-text" style="margin-bottom: 25px; line-height: 30px;">My name is Dwain and I've been a full-time photographer for 10 years. I will use my studio and specialized equipment to photograph your product and produce high-quality images for all your marketing and product photography needs.
-
-                    Please contact us with the details of your item and for our shipping address BEFORE purchasing the gig(s).
-
-                    This is a great gig for those that sell on Amazon, Etsy, eBay and more - meeting Amazon's strict product photo requirements!
-
-                    Images
-                    Every product is photographed to produce the most marketable images for your commercial use. The $5.00 gig will result in up to (4) images of A SINGLE PRODUCT as high-resolution JPGs.
-
-                    Delivery
-                    Since my studio is equipped for product photography, most products are photographed within 1-5 business days of receipt; and, the images are delivered to you within an additional day.
-
-                    Options
-                    We can photograph your product with props, a model, "in use", in "lifestyle" settings, against non-white backgrounds, and more for additional fees.
-
-                    Product Return
-                    If you need your product returned, you MUST provide a pre-paid return label. We hold products a maximum of 21 days.
-                </p>
+                <p class="card-text margin-card-text" style="margin-bottom: 25px; line-height: 30px;"><%= service.description %></p>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -58,7 +41,7 @@
         </div>
         <div class="col-md-4">
             <div class="card card-block">
-                <button class="btn btn-success btn-block">Buy Now For $15</button>
+                <button class="btn btn-success btn-block">Buy Now For $<%= service.price %></button>
             </div>
             <div class="card card-block">
                 <div class="row">
@@ -66,7 +49,7 @@
                         <img alt="usernam" class="avatar" src="https://pixabay.com/static/uploads/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
                     </div>
                     <div class="col-sm-6">
-                        <a href="/profileshow"><div class="username-show" style="margin-top: 25%;">UserName714</div></a>
+                        <a href="/profileshow"><div class="username-show" style="margin-top: 25%;"><%= user.username %></div></a>
                         <div class="seller-level">New Seller</div>
                     </div>
                 </div>

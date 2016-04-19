@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var middleware = require("../middleware/index.js");
-var User = require("../models/user");
+var User = require("../models/user.js");
 
 //======================================
 //Profile Get
