@@ -24,7 +24,7 @@
                                     <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">$</div>
-                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                        <input type="text" class="form-control" name="price" id="exampleInputAmount" placeholder="Amount">
                                         <div class="input-group-addon">.00</div>
                                     </div>
                                 </div>
@@ -91,11 +91,13 @@
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="exampleInputAmount" name="dueDate" placeholder="">
-                                        <div class="input-group-addon">Days</div>
-                                    </div>
+                                    <select class="form-control form-control-lg" name="dueDate" style="margin-top: 1.2%;" id="exampleSelect1">
+                                        <option value="1">1 Day</option>
+                                        <option value="2">2 Days</option>
+                                        <option value="3">3 Days</option>
+                                        <option value="4">4 Days</option>
+                                        <option value="5">5 Days</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

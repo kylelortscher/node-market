@@ -47,6 +47,62 @@ router.post('/newservice', function(req, res){
     var refund      = req.body.refund;
     var email       = req.user.email;
 
+    //Check If Title Is There
+    if(title == '') {
+        req.flash("error", "Title Can't Be Empty");
+        res.redirect('/service/new');
+        next();
+    }
+    //Check If Price Is There
+    if(price == '') {
+        req.flash("error", "Price Can't Be Empty");
+        res.redirect('/service/new');
+        next();
+    }
+
+    //Check If Description Is There
+    if(description == '') {
+        req.flash("error", "Description Can't Be Empty");
+        res.redirect('/service/new');
+        next();
+    }
+
+    //Checking Is Price Is Only Numbers
+    function onlyNumbers(price) {
+        var reg = /^\d+$/;
+        return reg.test(price);
+    }
+    if(!onlyNumbers(price)){
+        req.flash("error", "Price Can Only Be Numbers No Decimal Points Allowed");
+        res.redirect('/service/new');
+        next();
+    }
+
+    //Checking Price Length
+    if(price > 500) {
+        req.flash("error", "Price Was Too High");
+        res.redirect("/service/new");
+        next();
+    }
+
+    //Check If Title Length
+    if(title.length > 45){
+        req.flash("error", "Your title is only allowed to be 45 characters");
+        res.redirect("/service/new");
+        next();
+    }
+
+    //Check Youtube Url
+    function checkYoutubeUrl(youtubeUrl) {
+        var reg = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+        return reg.test(youtubeUrl);
+    }
+    if(!checkYoutubeUrl(youtubeUrl)) {
+        req.flash("error", "Youtube link is not valid");
+        res.redirect("/service/new");
+        next();
+    }
+
     var newService = {title: title, price: price, image: image,youtubeUrl: youtubeUrl, category: category, description: description, dueDate: dueDate, refund: refund, email: email};
     Service.create(newService, function(err, user){
         if(err) {
