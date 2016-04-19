@@ -149,3 +149,13 @@ footer .footer-nav {
     font-size: 19px;
     margin-top: 5%;
 }
+
+.white {
+    color: #fff;
+}
+
+.message-avatar-preview {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}

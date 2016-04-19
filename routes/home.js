@@ -14,5 +14,11 @@ router.get('/', function(req, res) {
 router.get('/welcome', function(req, res){
    res.render('landing/welcome');
 });
+//======================================
+//Messages Get
+//======================================
+router.get('/messages', function(req, res){
+   res.render('messages/index');
+});
 
 module.exports = router;
