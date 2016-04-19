@@ -18,6 +18,18 @@ router.get('/service/:id', function(req, res) {
     });
 });
 
+//======================================
+//Show Specific Users Profile
+//======================================
+router.get('/user/:username', function(req, res){
+    User.findOne({username: req.params.username}, function(err, user){
+       if(err) {
+           console.log(err);
+       } else {
+           res.render('users/show', {user:user});
+       }
+    });
+});
 
 //======================================
 //Show Certain User
