@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="card card-block">
+            <span class="center-profile">
+                <h2 style="font-weight: bold;text-align: center;">My Favorites</h2>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <% for(var i = 0; i < foundFavorites.length; i++) { %>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="card">
+                <a href="/service/<%= foundFavorites[i].titleSeo %>"><img class="card-img-top" src="https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg" alt="Card image cap"></a>
+                <div class="card-block">
+                    <a href="/service/<%= foundFavorites[i].titleSeo %>"><p class="card-text"><%= foundFavorites[i].title %></p></a>
+                    <hr>
+                    <div class="bottom-card-content">
+                        <% if(currentUser == null) { %>
+                        <a href="/signup"><span class="price">Reigster To See Price</span></a>
+                        <% } else { %>
+                        <p>$<%= foundFavorites[i].price %></p>
+                        <% } %>
+                    </div>
+                    <hr>
+                    <div class="rating">
+                        <i class="fa fa-star 2x" aria-hidden="true"></i>
+                        <i class="fa fa-star 2x" aria-hidden="true"></i>
+                        <i class="fa fa-star 2x" aria-hidden="true"></i>
+                        <i class="fa fa-star 2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-half" aria-hidden="true"></i>
+                        <span class="rating">4.7/5 217 Total Ratings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+<% include ../partials/footer %>

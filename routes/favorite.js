@@ -1,48 +1,51 @@
 //Express Configuration
-var express = require('express');
-var router = express.Router();
-var Service = require("../models/service");
-var User = require("../models/service");
+var express  = require('express');
+var router   = express.Router();
+var Service  = require("../models/service");
+var User     = require("../models/user");
 var Favorite = require("../models/favorite");
+var mongoose = require('mongoose');
 
 //======================================
-//Messages Get
+//Favorites Get
 //======================================
-
-//Getting The Favorites Of The Current User
 router.get('/favorites', function(req, res){
-    var userEmail = req.user.email;
-    Favorite.find({userEmail: userEmail}, function(err, favorites){
+    Favorite.find({userEmail: req.user.email}, function(err, favorites){
        if(err) {
            console.log(err);
        } else {
-           res.render('favorites/index', {favorites:favorites});
+           var favoriteService = [];
+           for(var i=0;i<favorites.length;i++) {
+               favoriteService.push(favorites[i].titleSeo);
+           }
+           Service.find({titleSeo: { $in: favoriteService}}, function(err, foundFavorites){
+               if(err) {
+                   console.log(err);
+               } else {
+                   res.render('favorites/index', {foundFavorites:foundFavorites});
+               }
+           });
        }
     });
 });
 
+router.get('/json', function(req, res){
+   res.json(req.user);
+});
+
+
 //Clicking The Favorite Button
-router.post('/favorite/:id', function(req, res){
-    //Getting Current User Email, and Object Id
+router.post('/services/:titleSeo/favorites', function(req, res){
+    var titleSeo = req.params.titleSeo;
     var userEmail = req.user.email;
-    var objectId = req.params.id;
 
-    //Creating The New Favorite Object
-    var newFavorite = {userEmail: userEmail, objectId: objectId};
-
+    var newFavorite = {titleSeo: titleSeo, userEmail: userEmail};
     Favorite.create(newFavorite, function(err, favorite){
        if(err) {
            console.log(err);
        } else {
-           //Redirecting Back To The Current Page
-           Service.findById(req.params.id, function(err, service){
-              if(err) {
-                  console.log(err);
-              } else {
-                  req.flash("info", "Successfully Favorited This Service");
-                  res.redirect('/service/' + service.titleSeo);
-              }
-           });
+           req.flash("info", "Successfully Favorited This Service");
+           res.redirect('/view/service/' + titleSeo);
        }
     });
 });

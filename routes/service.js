@@ -8,7 +8,7 @@ var User = require("../models/user.js");
 //==================================
 //Service Show One Page
 //==================================
-router.get('/service/:titleSeo', function(req, res){
+router.get('/view/service/:titleSeo', function(req, res){
    Service.findOne({'titleSeo': req.params.titleSeo}, function(err, service){
       if(err) {
           console.log(err);
