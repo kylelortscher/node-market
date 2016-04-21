@@ -40,12 +40,20 @@ router.post('/services/:titleSeo/favorites', function(req, res){
     var userEmail = req.user.email;
 
     var newFavorite = {titleSeo: titleSeo, userEmail: userEmail};
-    Favorite.create(newFavorite, function(err, favorite){
-       if(err) {
-           console.log(err);
-       } else {
-           req.flash("info", "Successfully Favorited This Service");
+
+    Favorite.findOne({titleSeo: titleSeo, userEmail: userEmail}, function(err, found){
+       if(found) {
+           req.flash("error", "You already favorited this product!");
            res.redirect('/view/service/' + titleSeo);
+       } else {
+           Favorite.create(newFavorite, function(err, favorite){
+               if(err) {
+                   console.log(err);
+               } else {
+                   req.flash("info", "Successfully Favorited This Service");
+                   res.redirect('/view/service/' + titleSeo);
+               }
+           });
        }
     });
 });
