@@ -26,6 +26,7 @@ router.get('/message/:username', function(req, res){
 router.post('/message/:username', function(req, res){
     var sender = req.user.email;
     var receiver = req.params.username;
+    var body = req.body.body;
 
     User.findOne({username: req.params.username}, function(err, foundUser){
         if (foundUser == null) {
@@ -33,7 +34,7 @@ router.post('/message/:username', function(req, res){
              return res.redirect('/');
         } else {
             var receiver = foundUser.email;
-            var newMessage = {sender: sender, receiver: receiver};
+            var newMessage = {sender: sender, receiver: receiver, body: body};
             Message.create(newMessage, function(err, messages){
                if(err) {
                    console.log(err);
