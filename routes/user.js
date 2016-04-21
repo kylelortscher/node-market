@@ -67,46 +67,79 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
     var image = "https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg";
     var description = "....";
 
-    //TODO Validate Email
     //Checking For Proper Email
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
 
-    //TODO Validate Username
     //Checking For Proper Username
     function validateUsername(username) {
         var re = /^[a-zA-Z0-9]+$/;
         return re.test(username);
     }
 
-    if(!validateEmail(email)) {
-        req.flash("error", "Not a valid Email Address!");
-        res.redirect("/signup");
-    } else if (!validateUsername(username)) {
-        req.flash("error", "Not a Valid Username Please Only Use Letters, and Numbers");
-        res.redirect("/signup");
-    } else if (password.length < 8) {
-        req.flash("error", "Password Must Be Longer Then 8 Characters");
-        res.redirect("/signup");
-    } else {
-        var newUser = {username: username, email: email, password: hash, image: image, description: description};
-        User.create(newUser, function(err, user){
-           if(err) {
-               console.log(err);
-               if(err.code === 11000) {
-                   req.flash("error", "Email/Username Is Already Taken");
-                   res.redirect('/signup');
-               }
-           } else {
-               //SETTING UP THE SESSION
-               req.auth.user = user.email;
-               req.flash("info", "Thanks for signin up!");
-               res.redirect('/welcome');
-           }
-        });
+    //Regex for password must be 8 characters, with One Number, and One Letter
+    function checkPwd(str) {
+        if (str.length < 6) {
+            return("too_short");
+        } else if (str.length > 20) {
+            return("too_long");
+        } else if (str.search(/\d/) == -1) {
+            return("no_num");
+        } else if (str.search(/[a-zA-Z]/) == -1) {
+            return("no_letter");
+        } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
+            return("bad_char");
+        }
+        return("ok");
     }
+
+    var answer = checkPwd(password);
+
+    if(answer == "too_short") {
+        req.flash("error", "Password Must Be Greater Then 6 Characters");
+        return res.redirect('/signup');
+    }
+
+    if(answer == "too_long") {
+        req.flash("error", "Password Must Be Less Then 20 Characters");
+        return res.redirect('/sigunup');
+    }
+
+    if(answer == "no_num" || "no_letter") {
+        req.flash("error", "Your password must be a combination of letters and numbers");
+        return res.redirect('/signup');
+    }
+
+    if(answer == "bad_char") {
+        req.flash("error", "Only Numbers, and Letters Are Allowed!");
+        return res.redirect('/signup');
+    }
+
+    //Checking If Valid Email
+    if(!validateEmail(email)) {
+        req.flash("error", "Not a valid email Addresss!");
+        return res.redirect("/signup");
+    }
+
+    //Checking If Valid Username
+    if(!validateUsername(username)) {
+        req.flash("error", "Not a valid username");
+        return res.redirect("/signup");
+    }
+
+
+    var newUser = {username: username, email: email, password: hash, image: image, description: description};
+    User.create(newUser, function(err, user){
+       if(err) {
+           console.log(err);
+       } else {
+           req.auth.user = user.email;
+           req.flash("info", "Thanks for signing up!");
+           res.redirect('/welcome');
+       }
+    });
 
 });
 
