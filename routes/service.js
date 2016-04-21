@@ -4,6 +4,7 @@ var router = express.Router();
 var Service = require("../models/service.js");
 var middleware = require("../middleware/index.js");
 var User = require("../models/user.js");
+var SpamService = require("../models/spamService");
 
 //==================================
 //Service Show One Page
@@ -49,6 +50,38 @@ router.get('/services/manage', function(req, res){
               }
            });
        }
+    });
+});
+
+//======================================
+//Spam Service Post
+//======================================
+router.post('/spamService/:titleSeo', function(req, res){
+    var reporterEmail = req.user.email;
+    var serviceReportedTitleSeo = req.params.titleSeo;
+
+    //Checking If The User Has Already Filled This Service As Spam
+    SpamService.find({reporterEmail: reporterEmail, serviceReportedTitleSeo: serviceReportedTitleSeo}, function(err, spamService){
+        if(err) {
+            console.log(err);
+        } else {
+            if(spamService.length > 0){
+                //Array Return Something
+                req.flash("error", "You have already reported this service we are checking into it!");
+                return res.redirect('/view/service/' + serviceReportedTitleSeo);
+            } else {
+                //Empty Array
+                var newSpamService = {reporterEmail: reporterEmail, serviceReportedTitleSeo: serviceReportedTitleSeo}
+                SpamService.create(newSpamService, function(err, spamService){
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        req.flash("info", "Successfully Reported this Service We Will Check Into This!");
+                        return res.redirect('/view/service/' + serviceReportedTitleSeo);
+                    }
+                });
+            }
+        }
     });
 });
 
@@ -108,7 +141,7 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
 
     //Make Sure Title Is Only alphanumeric
     function checkTitleAlphaNumeric(title) {
-        var reg = /^[a-z0-9]+$/i;
+        var reg = /^[a-z0-9 .\-]+$/i;
         return reg.test(title);
     }
     if(!checkTitleAlphaNumeric(title)){

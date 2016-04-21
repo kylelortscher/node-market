@@ -82,7 +82,9 @@
                         <button type="button" class="btn btn-secondary">Refund Policy</button>
                     </div>
                     <div class="col-xs-5">
-                        <button type="button" class="btn btn-secondary">Report As Spam</button>
+                        <form action="/spamService/<%= service.titleSeo %>" method="post">
+                            <button type="submit" class="btn btn-secondary">Report As Spam</button>
+                        </form>
                     </div>
                 </div>
                 <div class="row">

@@ -45,4 +45,13 @@ middlewareObj.alreadyLoggedIn = function (req, res, next){
     }
 };
 
+//===================================================
+//User Can't Message Himself
+//===================================================
+
+
+
+
+
+
 module.exports = middlewareObj;

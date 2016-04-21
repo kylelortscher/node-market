@@ -35,6 +35,8 @@ router.post('/message/:username', function(req, res){
     var receiver = req.params.username;
     var body = req.body.body;
 
+    //TODO ADD CHECK FOR USING A @ .com, or Phone Number
+
     User.findOne({username: req.params.username}, function(err, foundUser){
         if (foundUser == null) {
             req.flash("error", "User Dosen't Exist!");
