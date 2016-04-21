@@ -95,8 +95,8 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
     }
 
     //Checking Price Length
-    if(price > 500) {
-        req.flash("error", "Price Was Too High");
+    if(price > 500 && price < 0) {
+        req.flash("error", "Price Was Too Low Or High");
         return res.redirect("/service/new");
     }
 
