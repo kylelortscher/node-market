@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Service = require("../models/service");
-var User = require("../models/service");
+var User = require("../models/user");
 var Message = require("../models/message");
 
 //======================================
@@ -20,7 +20,14 @@ router.get('/messages', function(req, res){
 
 
 router.get('/message/:username', function(req, res){
-   res.render('messages/new');
+    User.findOne({username: req.params.username}, function(err, receiver){
+       if(receiver == null) {
+           req.flash("error", "User dosen't exist");
+           return res.redirect('/');
+       } else {
+           res.render('messages/new', {receiver:receiver});
+       }
+    });
 });
 
 router.post('/message/:username', function(req, res){
