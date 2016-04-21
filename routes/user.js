@@ -6,11 +6,38 @@ var middleware = require("../middleware/index.js");
 var User = require("../models/user.js");
 var Service = require("../models/service.js");
 
+
 //======================================
-//Profile Get
+//Get Current Profile
 //======================================
-router.get('/profile', function(req,res){
-    res.render('settings/profile');
+router.get('/profile', function(req, res) {
+    User.findOne({email: req.user.email}, function(err, user){
+        if(err) {
+            console.log(err);
+        } else {
+            Service.find({email: req.user.email}, function(err, services){
+               if(err) {
+                   console.log(err);
+               } else {
+                   //Display The User, and All Of The Services Associated With That User
+                   res.render('users/show', {user:user, services:services});
+               }
+            });
+        }
+    });
+});
+
+//======================================
+//Edit Current Profile
+//======================================
+router.get('/profile/edit', function(req, res){
+    User.findOne({email: req.user.email}, function(err, user){
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('profile/edit', {user:user})
+        }
+    });
 });
 
 //======================================
