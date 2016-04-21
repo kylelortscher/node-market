@@ -106,6 +106,16 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
         return res.redirect("/service/new");
     }
 
+    //Make Sure Title Is Only alphanumeric
+    function checkTitleAlphaNumeric(title) {
+        var reg = /^[a-z0-9]+$/i;
+        return reg.test(title);
+    }
+    if(!checkTitleAlphaNumeric(title)){
+        req.flash("error", "You are only allowed to use numbers and letters");
+        return res.redirect("/service/new");
+    }
+
     //Check Youtube Url
     function checkYoutubeUrl(youtubeUrl) {
         var reg = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
