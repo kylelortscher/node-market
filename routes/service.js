@@ -29,7 +29,7 @@ router.get('/view/service/:titleSeo', function(req, res){
 //======================================
 //New Service
 //======================================
-router.get('/service/new', function(req, res){
+router.get('/service/new',middleware.requireLoginFlash, function(req, res){
    res.render('service/new');
 });
 
@@ -37,7 +37,7 @@ router.get('/service/new', function(req, res){
 //Manage Current Services
 //======================================
 //TODO FIX GET USERNAME OF USER CLICKED
-router.get('/services/manage', function(req, res){
+router.get('/services/manage',middleware.requireLoginFlash, function(req, res){
     User.findOne({email: req.user.email}, function(err, user){
        if(err) {
            console.log(err);
@@ -56,7 +56,7 @@ router.get('/services/manage', function(req, res){
 //======================================
 //Spam Service Post
 //======================================
-router.post('/spamService/:titleSeo', function(req, res){
+router.post('/spamService/:titleSeo',middleware.requireLoginFlash, function(req, res){
     var reporterEmail = req.user.email;
     var serviceReportedTitleSeo = req.params.titleSeo;
 

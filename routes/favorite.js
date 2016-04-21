@@ -5,11 +5,12 @@ var Service  = require("../models/service");
 var User     = require("../models/user");
 var Favorite = require("../models/favorite");
 var mongoose = require('mongoose');
+var middleware = require("../middleware/index.js");
 
 //======================================
 //Favorites Get
 //======================================
-router.get('/favorites', function(req, res){
+router.get('/favorites',middleware.requireLoginFlash, function(req, res){
     Favorite.find({userEmail: req.user.email}, function(err, favorites){
        if(err) {
            console.log(err);
@@ -35,7 +36,7 @@ router.get('/json', function(req, res){
 
 
 //Clicking The Favorite Button
-router.post('/services/:titleSeo/favorites', function(req, res){
+router.post('/services/:titleSeo/favorites',middleware.requireLoginFlash, function(req, res){
     var titleSeo = req.params.titleSeo;
     var userEmail = req.user.email;
 

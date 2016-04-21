@@ -4,11 +4,12 @@ var router = express.Router();
 var Service = require("../models/service");
 var User = require("../models/user");
 var Message = require("../models/message");
+var middleware = require("../middleware/index.js");
 
 //======================================
 //Messages Get
 //======================================
-router.get('/messages', function(req, res){
+router.get('/messages',middleware.requireLoginFlash, function(req, res){
     Message.find( { $or: [ { sender:req.user.email  }, { receiver: req.user.email } ] }, function(err, userMessages){
         if(err) {
             console.log(err);
@@ -19,7 +20,7 @@ router.get('/messages', function(req, res){
 });
 
 
-router.get('/message/:username', function(req, res){
+router.get('/message/:username',middleware.requireLoginFlash, function(req, res){
     User.findOne({username: req.params.username}, function(err, receiver){
        if(receiver == null) {
            req.flash("error", "User dosen't exist");
@@ -30,7 +31,7 @@ router.get('/message/:username', function(req, res){
     });
 });
 
-router.post('/message/:username', function(req, res){
+router.post('/message/:username',middleware.requireLoginFlash, function(req, res){
     var sender = req.user.email;
     var receiver = req.params.username;
     var body = req.body.body;

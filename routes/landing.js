@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Service = require("../models/service");
+var middleware = require("../middleware/index.js");
 //======================================
 //Homepage Get
 //======================================
@@ -18,7 +19,7 @@ router.get('/', function(req, res) {
 //======================================
 //Welcome Get
 //======================================
-router.get('/welcome', function(req, res){
+router.get('/welcome',middleware.requireLoginFlash, function(req, res){
     res.render('landing/welcome');
 });
 
