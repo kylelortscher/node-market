@@ -64,6 +64,8 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
     var hash = bcrypt.hashSync(req.body.password, salt);
     var username = req.body.username;
     var email = req.body.email;
+    var image = "https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg";
+    var description = "....";
 
     //TODO Validate Email
     //Checking For Proper Email
@@ -89,7 +91,7 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
         req.flash("error", "Password Must Be Longer Then 8 Characters");
         res.redirect("/signup");
     } else {
-        var newUser = {username: username, email: email, password: hash};
+        var newUser = {username: username, email: email, password: hash, image: image, description: description};
         User.create(newUser, function(err, user){
            if(err) {
                console.log(err);
