@@ -41,7 +41,11 @@
         </div>
         <div class="col-md-4">
             <div class="card card-block">
-                <button class="btn btn-success btn-block">Buy Now For $<%= service.price %></button>
+                <% if(currentUser == null) { %>
+                    <a href="/signup" class="btn btn-success btn-block">Register To See Price</a>
+                <% } else { %>
+                    <button class="btn btn-success btn-block">Buy Now For $<%= service.price %></button>
+                <% } %>
             </div>
             <div class="card card-block">
                 <div class="row">
