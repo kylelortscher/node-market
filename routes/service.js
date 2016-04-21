@@ -70,21 +70,18 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
     //Check If Title Is There
     if(title == '') {
         req.flash("error", "Title Can't Be Empty");
-        res.redirect('/service/new');
-        next();
+        return res.redirect('/service/new');
     }
     //Check If Price Is There
     if(price == '') {
         req.flash("error", "Price Can't Be Empty");
-        res.redirect('/service/new');
-        next();
+        return res.redirect('/service/new');
     }
 
     //Check If Description Is There
     if(description == '') {
         req.flash("error", "Description Can't Be Empty");
-        res.redirect('/service/new');
-        next();
+        return res.redirect('/service/new');
     }
 
     //Checking Is Price Is Only Numbers
@@ -94,22 +91,19 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
     }
     if(!onlyNumbers(price)){
         req.flash("error", "Price Can Only Be Numbers No Decimal Points Allowed");
-        res.redirect('/service/new');
-        next();
+        return res.redirect('/service/new');
     }
 
     //Checking Price Length
     if(price > 500) {
         req.flash("error", "Price Was Too High");
-        res.redirect("/service/new");
-        next();
+        return res.redirect("/service/new");
     }
 
     //Check If Title Length
     if(title.length > 55){
         req.flash("error", "Your title is only allowed to be 45 characters");
-        res.redirect("/service/new");
-        next();
+        return res.redirect("/service/new");
     }
 
     //Check Youtube Url
@@ -122,8 +116,7 @@ router.post('/newservice', middleware.requireLoginFlash, function(req, res){
     if (youtubeUrl != '') {
         if(!checkYoutubeUrl(youtubeUrl)) {
             req.flash("error", "Youtube link is not valid");
-            res.redirect("/service/new");
-            next();
+            return res.redirect("/service/new");
         }
     }
 
