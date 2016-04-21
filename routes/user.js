@@ -64,7 +64,7 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
     var hash = bcrypt.hashSync(req.body.password, salt);
     var username = req.body.username;
     var email = req.body.email;
-    var image = "https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg";
+    var profileImage = "https://static.pexels.com/photos/9416/light-car-display-shop-large.jpg";
     var description = "....";
 
     //Checking For Proper Email
@@ -79,43 +79,12 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
         return re.test(username);
     }
 
-    //Regex for password must be 8 characters, with One Number, and One Letter
-    function checkPwd(str) {
-        if (str.length < 6) {
-            return("too_short");
-        } else if (str.length > 20) {
-            return("too_long");
-        } else if (str.search(/\d/) == -1) {
-            return("no_num");
-        } else if (str.search(/[a-zA-Z]/) == -1) {
-            return("no_letter");
-        } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
-            return("bad_char");
-        }
-        return("ok");
-    }
-
-    var answer = checkPwd(password);
-
-    if(answer == "too_short") {
-        req.flash("error", "Password Must Be Greater Then 6 Characters");
+    //Check Password Length
+    if(password.length < 6 || password.length > 20){
+        req.flash("error", "Password Must Be Between 6 and 30 characters");
         return res.redirect('/signup');
     }
 
-    if(answer == "too_long") {
-        req.flash("error", "Password Must Be Less Then 20 Characters");
-        return res.redirect('/sigunup');
-    }
-
-    if(answer == "no_num" || "no_letter") {
-        req.flash("error", "Your password must be a combination of letters and numbers");
-        return res.redirect('/signup');
-    }
-
-    if(answer == "bad_char") {
-        req.flash("error", "Only Numbers, and Letters Are Allowed!");
-        return res.redirect('/signup');
-    }
 
     //Checking If Valid Email
     if(!validateEmail(email)) {
@@ -130,7 +99,7 @@ router.post('/signup', middleware.alreadyLoggedIn, function(req, res) {
     }
 
 
-    var newUser = {username: username, email: email, password: hash, image: image, description: description};
+    var newUser = {username: username, email: email, password: hash, profileImage: profileImage, description: description};
     User.create(newUser, function(err, user){
        if(err) {
            console.log(err);
